@@ -25,6 +25,14 @@ function showMore(dataElement, ShowTimeout = 100) {
   let showEndCounter;
 
   // Функции
+  function scroll(i = 1) {
+    if (i - 1 == showCounter || showCounter == 1) {
+      buttonElem.scrollIntoView({ block: "end", behavior: "smooth" });
+      return;
+    } else {
+      buttonElem.scrollIntoView({ block: "end", behavior: "smooth" });
+    }
+  }
   function hideElement(elementNumber, parentElement) {
     if (elementNumber && parentElement) {
       for (let i = elementNumber; i < parentElement.children.length; i++) {
@@ -34,6 +42,7 @@ function showMore(dataElement, ShowTimeout = 100) {
       console.log("Error");
     }
   }
+  
   function showElementfunc(elementNumber, parentElement, i = shownCounter) {
     if (elementNumber && parentElement) {
       showEndCounter = shownCounter + showCounter;
@@ -42,16 +51,8 @@ function showMore(dataElement, ShowTimeout = 100) {
       } else {
         parentElement.children[i].classList.remove("_hidden");
         setTimeout(showElementfunc, ShowTimeout, elementNumber, parentElement, i + 1);
-        scroll(ShowTimeout);
+        scroll();
       }
-    }
-  }
-  function scroll(ShowTimeout, i = 1) {
-    if (i - 1 == showCounter || showCounter == 1) {
-      buttonElem.scrollIntoView({ block: "end", behavior: "smooth" });
-      return;
-    } else {
-      buttonElem.scrollIntoView({ block: "end", behavior: "smooth" });
     }
   }
 
